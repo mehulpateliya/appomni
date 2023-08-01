@@ -12,6 +12,7 @@ datagroup: appomni_dashboards_default_datagroup {
 persist_with: appomni_dashboards_default_datagroup
 
 explore: events {
+    sql_always_where: ${metadata__log_type} = "APPOMNI" ;;
     join: events__about {
       view_label: "Events: About"
       sql: LEFT JOIN UNNEST(${events.about}) as events__about ;;
