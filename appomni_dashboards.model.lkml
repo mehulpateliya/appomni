@@ -168,6 +168,23 @@ explore: events {
       sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels ;;
       relationship: one_to_many
     }
+
+    join: events__about__labels__related__user {
+      view_label: "Events: About Labels Related User"
+      sql_where: ${events__about__labels__related__user.key} LIKE 'related\\_user%' ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__user ;;
+      fields: [events__about__labels__related__user.value]
+      relationship: one_to_many
+    }
+
+    join: events__about__labels__related__event {
+      view_label: "Events: About Labels Related Event"
+      sql_where: ${events__about__labels__related__event.key} LIKE 'related\\_event%' ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__event ;;
+      fields: [events__about__labels__related__event.value]
+      relationship: one_to_many
+    }
+
     join: events__intermediary__mac {
       view_label: "Events: Intermediary Mac"
       sql: LEFT JOIN UNNEST(${events__intermediary.mac}) as events__intermediary__mac ;;
