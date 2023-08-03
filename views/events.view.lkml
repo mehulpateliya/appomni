@@ -47597,11 +47597,11 @@ view: events__security_result {
   dimension: severity_for_appomni {
     type: string
     case: {
-      when: {sql:${severity} == 1;; label: "INFORMATIONAL"}
-      when: {sql:${severity} == 2;; label: "LOW"}
-      when: {sql:${severity} == 3;; label: "MEDIUM"}
-      when: {sql:${severity} == 4;; label: "HIGH"}
-      when: {sql:${severity} == 5;; label: "CRITICAL"}
+      when: {sql:${severity} in (100);; label: "INFORMATIONAL"}
+      when: {sql:${severity} in (200);; label: "LOW"}
+      when: {sql:${severity} in (300);; label: "MEDIUM"}
+      when: {sql:${severity} in (400);; label: "HIGH"}
+      when: {sql:${severity} in (500);; label: "CRITICAL"}
       else: "Unknown"
     }
   }
@@ -47789,6 +47789,47 @@ view: events__about__labels__related__user {
 
 
 view: events__about__labels__related__event {
+
+  dimension: key {
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+  dimension: rbac_enabled {
+    type: yesno
+    sql: ${TABLE}.rbac_enabled ;;
+  }
+  dimension: source {
+    type: string
+    sql: ${TABLE}.source ;;
+  }
+  dimension: value {
+    type: string
+    sql: ${TABLE}.value ;;
+  }
+}
+
+view: events__about__labels__event__type {
+
+  dimension: key {
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+  dimension: rbac_enabled {
+    type: yesno
+    sql: ${TABLE}.rbac_enabled ;;
+  }
+  dimension: source {
+    type: string
+    sql: ${TABLE}.source ;;
+  }
+  dimension: value {
+    type: string
+    sql: ${TABLE}.value ;;
+  }
+}
+
+
+view: events__about__labels__service__type {
 
   dimension: key {
     type: string
