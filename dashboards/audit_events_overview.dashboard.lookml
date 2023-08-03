@@ -120,16 +120,16 @@
     model: appomni_dashboards
     explore: events
     type: looker_column
-    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_hour]
+    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_time]
     pivots: [events.principal__resource__name]
-    fill_fields: [events.event_timestamp_date_hour]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
-    column_limit: 50
+    column_limit: 500
+    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -158,7 +158,7 @@
     point_style: none
     show_value_labels: false
     label_density: 25
-    x_axis_scale: auto
+    x_axis_scale: time
     y_axis_combined: true
     ordering: none
     show_null_labels: false
@@ -204,8 +204,8 @@
       Service Type: events.principal__resource__resource_subtype
       Service Name: events.principal__resource__name
     row: 6
-    col: 13
-    width: 11
+    col: 12
+    width: 12
     height: 6
   - title: Service Type Action Count
     name: Service Type Action Count
@@ -220,6 +220,7 @@
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 500
     column_limit: 50
+    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -270,24 +271,25 @@
       Service Name: events.principal__resource__name
     row: 6
     col: 0
-    width: 13
+    width: 12
     height: 6
   - title: Successful Logins Over Time
     name: Successful Logins Over Time
     model: appomni_dashboards
     explore: events
     type: looker_area
-    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_hour]
+    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_time]
     pivots: [events.principal__resource__name]
-    fill_fields: [events.event_timestamp_date_hour]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
       events.metadata__product_event_type: '"login_user"'
+      events__security_result.action_details: success
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
-    column_limit: 50
+    column_limit: 500
+    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -316,7 +318,7 @@
     point_style: none
     show_value_labels: false
     label_density: 25
-    x_axis_scale: auto
+    x_axis_scale: time
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
@@ -368,17 +370,18 @@
     model: appomni_dashboards
     explore: events
     type: looker_area
-    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_hour]
+    fields: [count_of_metadata_product_log_id, events.principal__resource__name, events.event_timestamp_date_time]
     pivots: [events.principal__resource__name]
-    fill_fields: [events.event_timestamp_date_hour]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
       events.metadata__product_event_type: '"login_user"'
+      events__security_result.action_details: failure
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
-    column_limit: 50
+    column_limit: 500
+    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -407,7 +410,7 @@
     point_style: none
     show_value_labels: false
     label_density: 25
-    x_axis_scale: auto
+    x_axis_scale: time
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
@@ -511,7 +514,7 @@
     title: Time
     type: field_filter
     default_value: 24 hour
-    allow_multiple_values: true
+    allow_multiple_values: false
     required: false
     ui_config:
       type: advanced
@@ -528,8 +531,8 @@
     allow_multiple_values: false
     required: false
     ui_config:
-      type: advanced
-      display: popover
+      type: dropdown_menu
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
@@ -541,8 +544,8 @@
     allow_multiple_values: false
     required: false
     ui_config:
-      type: advanced
-      display: popover
+      type: dropdown_menu
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
