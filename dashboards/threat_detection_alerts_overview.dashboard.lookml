@@ -234,7 +234,7 @@
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: editable
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
