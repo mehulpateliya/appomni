@@ -47597,11 +47597,11 @@ view: events__security_result {
   dimension: severity_for_appomni {
     type: string
     case: {
-      when: {sql:${severity} == 1;; label: "INFORMATIONAL"}
-      when: {sql:${severity} == 2;; label: "LOW"}
-      when: {sql:${severity} == 3;; label: "MEDIUM"}
-      when: {sql:${severity} == 4;; label: "HIGH"}
-      when: {sql:${severity} == 5;; label: "CRITICAL"}
+      when: {sql:${severity} in (100);; label: "Informational"}
+      when: {sql:${severity} in (200);; label: "Low"}
+      when: {sql:${severity} in (300);; label: "Medium"}
+      when: {sql:${severity} in (400);; label: "High"}
+      when: {sql:${severity} in (500);; label: "Critical"}
       else: "Unknown"
     }
   }
