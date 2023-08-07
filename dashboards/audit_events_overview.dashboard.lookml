@@ -466,6 +466,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__resource__resource_subtype: "-appomni"
     sorts: [count desc 0]
     limit: 500
     column_limit: 50
