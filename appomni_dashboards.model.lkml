@@ -185,6 +185,21 @@ explore: events {
       relationship: one_to_many
     }
 
+    join: events__about__labels__event__type {
+      view_label: "Events: About Labels Event Type"
+      sql_where: ${events__about__labels__event__type.key} = "event_type" ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__event__type ;;
+      fields: [events__about__labels__event__type.value]
+      relationship: one_to_many
+    }
+
+    join: events__about__labels__service__type {
+      view_label: "Events: About Labels Service Type"
+      sql_where: ${events__about__labels__service__type.key} = "service_type" ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__service__type ;;
+      fields: [events__about__labels__service__type.value]
+      relationship: one_to_many
+    }
     join: events__intermediary__mac {
       view_label: "Events: Intermediary Mac"
       sql: LEFT JOIN UNNEST(${events__intermediary.mac}) as events__intermediary__mac ;;
