@@ -79,7 +79,7 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events__about__labels__related__user.value,
-      events__security_result.rule_name]
+      events__security_result.rule_name, events__about__labels__related__event.value]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
@@ -108,6 +108,7 @@
     truncate_header: false
     minimum_column_width: 75
     series_labels:
+      events__about__labels__related__event.value: related.events{}
       events__about__labels__related__user.value: User
       events__security_result.rule_name: Alert Rule
       events.event_timestamp_date_time: _time
