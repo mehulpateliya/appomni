@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: eRUHvDz9q3dgYW5sNYLtaV
+  preferred_slug: xlzCTDmipelfC8QD0oVVZh
   elements:
   - title: Alert Severity
     name: Alert Severity
@@ -87,6 +87,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
+      events__security_result.severity_details: "-EMPTY"
     sorts: [count desc 0]
     limit: 500
     column_limit: 50
@@ -125,7 +126,7 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
-      Alert Severity: events__security_result.severity_for_appomni
+      Alert Severity: events__security_result.filter_severity_for_appomni
     row: 0
     col: 7
     width: 7
@@ -141,6 +142,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
+      events__security_result.severity_details: "-EMPTY"
     sorts: [events__security_result.rule_name, count_of_metadata_product_log_id desc
         0]
     limit: 500
@@ -207,14 +209,14 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
-      Alert Severity: events__security_result.severity_for_appomni
+      Alert Severity: events__security_result.filter_severity_for_appomni
       Service Type: events.principal__resource__resource_subtype
     row: 0
     col: 14
     width: 10
     height: 6
-  - title: Alerts with related events
-    name: Alerts with related events
+  - title: Alerts With Related Events
+    name: Alerts With Related Events
     model: appomni_dashboards
     explore: events
     type: looker_grid
@@ -223,6 +225,9 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
+      events__security_result.rule_name: "-EMPTY"
+      events__about__labels__related__user.value: "-EMPTY"
+      events__security_result.severity_details: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
     limit: 500
     column_limit: 50
@@ -281,10 +286,10 @@
     totals_color: "#808080"
     defaults_version: 1
     listen:
-      Rule Name: events__security_result.rule_name
       Time: events.event_timestamp_date_time
-      Alert Severity: events__security_result.severity_for_appomni
+      Alert Severity: events__security_result.filter_severity_for_appomni
       Service Type: events.principal__resource__resource_subtype
+      Rule Name: events__security_result.filter_rule_name
     row: 6
     col: 0
     width: 24
@@ -300,6 +305,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__user__userid: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
     column_limit: 50
     total: true
@@ -333,7 +339,7 @@
     truncate_column_names: false
     defaults_version: 1
     listen:
-      Event ID: events.metadata__product_log_id
+      Event Id: events.metadata__product_log_id
     row: 12
     col: 0
     width: 24
@@ -361,11 +367,11 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
-    field: events__security_result.severity_for_appomni
+    field: events__security_result.filter_severity_for_appomni
   - name: Service Type
     title: Service Type
     type: field_filter
@@ -374,7 +380,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
@@ -391,16 +397,16 @@
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
-    field: events__security_result.rule_name
-  - name: Event ID
-    title: Event ID
+    field: events__security_result.filter_rule_name
+  - name: Event Id
+    title: Event Id
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []

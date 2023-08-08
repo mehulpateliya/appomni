@@ -13629,6 +13629,12 @@ view: events {
     group_label: "Principal Resource"
     group_item_label: "Resource Subtype"
   }
+  dimension: principal__resource__filter_resource_subtype {
+    type: string
+    sql: ${principal__resource__resource_subtype} ;;
+    group_label: "Principal Resource"
+    group_item_label: "Filter Resource Subtype"
+  }
   dimension: principal__resource__resource_type {
     type: number
     sql: ${TABLE}.principal.resource.resource_type ;;
@@ -47569,6 +47575,10 @@ view: events__security_result {
     type: string
     sql: rule_name ;;
   }
+  dimension: filter_rule_name {
+    type: string
+    sql: ${rule_name} ;;
+  }
   dimension: rule_set {
     type: string
     sql: rule_set ;;
@@ -47594,6 +47604,7 @@ view: events__security_result {
     sql: severity_details ;;
   }
 
+
   dimension: severity_for_appomni {
     type: string
     case: {
@@ -47605,7 +47616,10 @@ view: events__security_result {
       else: "Unknown"
     }
   }
-
+  dimension: filter_severity_for_appomni {
+    type: string
+    sql: ${severity_for_appomni} ;;
+  }
   dimension: summary {
     type: string
     sql: summary ;;
