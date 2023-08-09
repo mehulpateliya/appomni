@@ -15,6 +15,7 @@
       events.principal__resource__resource_subtype: "-appomni"
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
+      events__about__labels__related__user.value: "-NULL"
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 500
     column_limit: 50
@@ -58,6 +59,7 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
+      Related User: events__about__labels__related__user.filter_value
     row: 0
     col: 0
     width: 14
@@ -69,7 +71,7 @@
     type: looker_grid
     fields: [events__about__labels__related__user.value, count_of_metadata_product_log_id_2]
     filters:
-      events.principal__resource__resource_subtype: "-appomni"
+      events.principal__resource__resource_subtype: "-appomni,-NULL"
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
     sorts: [count_of_metadata_product_log_id_2 desc 0]
@@ -147,6 +149,7 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
+      Service Type: events.principal__resource__filter_resource_subtype
     row: 0
     col: 14
     width: 10
@@ -166,3 +169,29 @@
     explore: events
     listens_to_filters: []
     field: events.event_timestamp_date_time
+  - name: Service Type
+    title: Service Type
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: inline
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events.principal__resource__filter_resource_subtype
+  - name: Related User
+    title: Related User
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: popover
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events__about__labels__related__user.filter_value
