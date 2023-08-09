@@ -173,7 +173,7 @@ explore: events {
       view_label: "Events: About Labels Related User"
       sql_where: ${events__about__labels__related__user.key} LIKE 'related\\_user%' ;;
       sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__user ;;
-      fields: [events__about__labels__related__user.value]
+      fields: [events__about__labels__related__user.value,events__about__labels__related__user.filter_value]
       relationship: one_to_many
     }
 
