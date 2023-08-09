@@ -51432,6 +51432,11 @@ view: events__target__ip_geo_artifact {
     group_label: "Location Region Coordinates"
     group_item_label: "Longitude"
   }
+  dimension: location__ip_location {
+    type: location
+    sql_latitude: ${location__region_coordinates__latitude} ;;
+    sql_longitude: ${location__region_coordinates__longitude} ;;
+  }
   dimension: location__region_latitude {
     type: number
     sql: ${TABLE}.location.region_latitude ;;
@@ -54637,6 +54642,11 @@ view: events__principal__ip_geo_artifact {
     sql: ${TABLE}.location.region_coordinates.longitude ;;
     group_label: "Location Region Coordinates"
     group_item_label: "Longitude"
+  }
+  dimension: location__ip_location {
+    type: location
+    sql_latitude: ${location__region_coordinates__latitude} ;;
+    sql_longitude: ${location__region_coordinates__longitude} ;;
   }
   dimension: location__region_latitude {
     type: number
