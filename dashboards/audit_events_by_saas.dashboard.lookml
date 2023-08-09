@@ -15,6 +15,8 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.metadata__product_event_type: "-EMPTY"
+      events.principal__user__userid: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
     limit: 5000
     column_limit: 50
@@ -171,8 +173,8 @@
     listen:
       ServiceType: events.principal__resource__resource_subtype
       Workday Events: events.event_timestamp_date_time
-      Event Action: events.metadata__product_event_type
-      User Name: events.principal__user__userid
+      Event Action: events.metadata__product_filter_event_type
+      User Name: events.principal__user__filter_userid
     row: 6
     col: 0
     width: 24
@@ -332,6 +334,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.metadata__product_event_type: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 500
     column_limit: 50
@@ -464,7 +467,7 @@
     listen:
       ServiceType: events.principal__resource__resource_subtype
       Workday Events: events.event_timestamp_date_time
-      Event Action: events.metadata__product_event_type
+      Event Action: events.metadata__product_filter_event_type
     row: 0
     col: 12
     width: 12
@@ -497,19 +500,6 @@
     explore: events
     listens_to_filters: []
     field: events.principal__resource__resource_subtype
-  - name: Event Action
-    title: Event Action
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: false
-    required: false
-    ui_config:
-      type: dropdown_menu
-      display: inline
-    model: appomni_dashboards
-    explore: events
-    listens_to_filters: []
-    field: events.metadata__product_event_type
   - name: User Name
     title: User Name
     type: field_filter
@@ -518,8 +508,21 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
-    field: events.principal__user__userid
+    field: events.principal__user__filter_userid
+  - name: Event Action
+    title: Event Action
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: popover
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events.metadata__product_filter_event_type

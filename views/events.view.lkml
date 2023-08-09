@@ -205,6 +205,12 @@ view: events {
     group_label: "Metadata"
     group_item_label: "Product Event Type"
   }
+  dimension: metadata__product_filter_event_type {
+    type: string
+    sql: ${metadata__product_event_type};;
+    group_label: "Metadata"
+    group_item_label: "Filter Product Event Type"
+  }
   dimension: metadata__product_log_id {
     type: string
     sql: ${TABLE}.metadata.product_log_id ;;
@@ -14090,6 +14096,12 @@ view: events {
     sql: ${TABLE}.principal.user.userid ;;
     group_label: "Principal User"
     group_item_label: "Userid"
+  }
+  dimension: principal__user__filter_userid {
+    type: string
+    sql: ${principal__user__userid} ;;
+    group_label: "Principal User"
+    group_item_label: "Filter Userid"
   }
   dimension: principal__user__windows_sid {
     type: string
