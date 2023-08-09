@@ -14,6 +14,8 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 500
     column_limit: 50
@@ -50,8 +52,8 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 0
     col: 0
     width: 8
@@ -65,6 +67,8 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [count desc 0]
     limit: 500
     column_limit: 50
@@ -109,8 +113,8 @@
     show_comparison_label: true
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 0
     col: 16
     width: 8
@@ -125,6 +129,8 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
@@ -201,8 +207,8 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 6
     col: 12
     width: 12
@@ -217,6 +223,8 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 500
     column_limit: 50
@@ -267,8 +275,8 @@
     show_comparison_label: true
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 6
     col: 0
     width: 12
@@ -285,6 +293,8 @@
       events__about__labels.value: event
       events.metadata__product_event_type: '"login_user"'
       events__security_result.action_details: success
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
@@ -359,8 +369,8 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 12
     col: 0
     width: 24
@@ -377,6 +387,8 @@
       events__about__labels.value: event
       events.metadata__product_event_type: '"login_user"'
       events__security_result.action_details: failure
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
+      events.principal__resource__name: "-EMPTY"
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
     limit: 500
@@ -451,8 +463,8 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
-      Service Type: events.principal__resource__resource_subtype
-      Service Name: events.principal__resource__name
+      Service Type: events.principal__resource__filter_resource_subtype
+      Service Name: events.principal__filter_resource__name
     row: 18
     col: 0
     width: 24
@@ -505,7 +517,6 @@
     show_comparison_label: true
     listen:
       Time: events.event_timestamp_date_time
-      Service Name: events.principal__resource__name
     row: 0
     col: 8
     width: 8
@@ -529,25 +540,25 @@
     title: Service Type
     type: field_filter
     default_value: ''
-    allow_multiple_values: false
+    allow_multiple_values: true
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
-    field: events.principal__resource__resource_subtype
+    field: events.principal__resource__filter_resource_subtype
   - name: Service Name
     title: Service Name
     type: field_filter
     default_value: ''
-    allow_multiple_values: false
+    allow_multiple_values: true
     required: false
     ui_config:
       type: dropdown_menu
-      display: inline
+      display: popover
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
-    field: events.principal__resource__name
+    field: events.principal__filter_resource__name
