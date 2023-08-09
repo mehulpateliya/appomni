@@ -47799,6 +47799,10 @@ view: events__about__labels__related__user {
     type: string
     sql: ${TABLE}.value ;;
   }
+  dimension: filter_value {
+    type: string
+    sql: ${TABLE}.value ;;
+  }
 }
 
 
