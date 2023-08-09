@@ -47807,7 +47807,7 @@ view: events__about__labels__related__user {
   }
   dimension: filter_value {
     type: string
-    sql: ${TABLE}.value ;;
+    sql: ${value} ;;
   }
 }
 
