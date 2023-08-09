@@ -17,7 +17,7 @@
       events.principal__resource__resource_subtype: "-appomni,-EMPTY"
       events.principal__resource__name: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -70,7 +70,7 @@
       events.principal__resource__resource_subtype: "-appomni,-EMPTY"
       events.principal__resource__name: "-EMPTY"
     sorts: [count desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - category: measure
@@ -226,9 +226,8 @@
       events.principal__resource__resource_subtype: "-appomni,-EMPTY"
       events.principal__resource__name: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
-    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -297,9 +296,8 @@
       events.principal__resource__name: "-EMPTY"
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
-    limit: 500
+    limit: 5000
     column_limit: 500
-    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -391,9 +389,8 @@
       events.principal__resource__name: "-EMPTY"
     sorts: [events.principal__resource__name, count_of_metadata_product_log_id desc
         0]
-    limit: 500
+    limit: 5000
     column_limit: 500
-    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -480,7 +477,7 @@
       events__about__labels.value: event
       events.principal__resource__resource_subtype: "-appomni"
     sorts: [count desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - category: measure
