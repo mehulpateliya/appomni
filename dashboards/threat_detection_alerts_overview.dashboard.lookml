@@ -16,7 +16,7 @@
       events__about__labels.value: alert
       events__security_result.severity_details: "-EMPTY"
     sorts: [count desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - category: measure
@@ -89,7 +89,7 @@
       events__about__labels.value: alert
       events__security_result.severity_details: "-EMPTY"
     sorts: [count desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - category: measure
@@ -145,9 +145,8 @@
       events__security_result.severity_details: "-EMPTY"
     sorts: [events__security_result.rule_name, count_of_metadata_product_log_id desc
         0]
-    limit: 500
+    limit: 5000
     column_limit: 500
-    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -229,9 +228,8 @@
       events__about__labels__related__user.value: "-EMPTY"
       events__security_result.severity_details: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
-    total: true
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -308,7 +306,6 @@
       events.principal__user__userid: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
     column_limit: 50
-    total: true
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -367,7 +364,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
@@ -380,7 +377,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
@@ -406,7 +403,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
