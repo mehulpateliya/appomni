@@ -225,6 +225,7 @@
       events__about__labels.value: event
       events.principal__resource__resource_subtype: "-appomni,-EMPTY"
       events.principal__resource__name: "-EMPTY"
+      events.metadata__product_event_type: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
     limit: 5000
     column_limit: 50
@@ -475,7 +476,7 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
-      events.principal__resource__resource_subtype: "-appomni"
+      events.principal__resource__resource_subtype: "-appomni,-EMPTY"
     sorts: [count desc 0]
     limit: 5000
     column_limit: 50
