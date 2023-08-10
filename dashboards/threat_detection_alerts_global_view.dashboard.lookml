@@ -3,29 +3,30 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: oBh95OGlZpYjM9gZX9S2Wa
+  preferred_slug: OsjPsEDxLkF2Jcuuz9G3AA
   elements:
   - title: Alerts by Service Type
     name: Alerts by Service Type
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [events.principal__resource__resource_subtype, count_of_metadata_product_log_id]
+    fields: [events.principal__resource__resource_subtype, count]
     filters:
       events.principal__resource__resource_subtype: "-appomni"
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
       events__about__labels__related__user.value: "-NULL"
     sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
-    - measure: count_of_metadata_product_log_id
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: labPer
@@ -75,7 +76,7 @@
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
     sorts: [count_of_metadata_product_log_id_2 desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -190,7 +191,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []

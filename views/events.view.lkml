@@ -78668,6 +78668,10 @@ view: events__security_result__attack_details__tactics {
     type: string
     sql: ${TABLE}.name ;;
   }
+  dimension: filter_name {
+    type: string
+    sql: ${name};;
+  }
 }
 
 view: events__target__ip_geo_artifact__network__email__to {

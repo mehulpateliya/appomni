@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: r3yyAl2Yme8cbgzCjr4m3l
+  preferred_slug: qDblV0ILvwEi9IoT2nx7L3
   elements:
   - title: Alerts
     name: Alerts
@@ -18,7 +18,7 @@
       events__about__labels.value: alert
       events__security_result.rule_name: "-EMPTY"
     sorts: [events__security_result.rule_name, events.event_timestamp_date_time desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -84,8 +84,10 @@
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
       events__security_result.rule_name: "-EMPTY"
+      events__about__labels__related__user.value: "-EMPTY"
+      events__security_result.severity_for_appomni: "-Unknown"
     sorts: [events.event_timestamp_date_time desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
     show_view_names: false
     show_row_numbers: true
@@ -116,6 +118,8 @@
     listen:
       Time: events.event_timestamp_date_time
       ServiceType: events.principal__resource__resource_subtype
+      Rule Name (From Alert): events__security_result.filter_rule_name
+      Severity: events__security_result.filter_severity_for_appomni
     row: 11
     col: 0
     width: 24
@@ -133,7 +137,7 @@
       events__about__labels.value: event
       events.principal__user__userid: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
     show_view_names: false
     show_row_numbers: true
@@ -195,7 +199,7 @@
     listen:
       Time: events.event_timestamp_date_time
       ServiceType: events.principal__resource__resource_subtype
-      Filter Related Events Details: events.metadata__product_log_id
+      Event ID (Filter Related Events): events.metadata__product_log_id
     row: 16
     col: 0
     width: 24
@@ -205,21 +209,24 @@
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [events__security_result__attack_details__tactics.name, count_of_metadata_product_log_id]
+    fields: [events__security_result__attack_details__tactics.name, count]
     filters:
       events__security_result__attack_details__tactics.name: "-EMPTY"
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
-    sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+      events__security_result.rule_name: "-EMPTY"
+      events__security_result.severity_for_appomni: "-Unknown"
+    sorts: [count desc 0]
+    limit: 5000
     column_limit: 50
     dynamic_fields:
-    - measure: count_of_metadata_product_log_id
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: labPer
@@ -254,6 +261,8 @@
     listen:
       ServiceType: events.principal__resource__resource_subtype
       Time: events.event_timestamp_date_time
+      Rule Name (From Alert): events__security_result.filter_rule_name
+      Severity: events__security_result.filter_severity_for_appomni
     row: 5
     col: 12
     width: 12
@@ -263,21 +272,23 @@
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [count_of_metadata_product_log_id, events__security_result.severity_for_appomni]
+    fields: [count, events__security_result.severity_for_appomni]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
       events__security_result.severity_for_appomni: "-Unknown"
-    sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+      events__security_result.rule_name: "-EMPTY"
+    sorts: [count]
+    limit: 5000
     column_limit: 50
     dynamic_fields:
-    - measure: count_of_metadata_product_log_id
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: labPer
@@ -312,6 +323,7 @@
     listen:
       ServiceType: events.principal__resource__resource_subtype
       Time: events.event_timestamp_date_time
+      Rule Name (From Alert): events__security_result.filter_rule_name
     row: 5
     col: 0
     width: 12
@@ -344,16 +356,48 @@
     explore: events
     listens_to_filters: []
     field: events.principal__resource__resource_subtype
-  - name: Filter Related Events Details
-    title: Filter Related Events Details
+  - name: Event ID (Filter Related Events)
+    title: Event ID (Filter Related Events)
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
     field: events.metadata__product_log_id
+  - name: Rule Name (From Alert)
+    title: Rule Name (From Alert)
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: inline
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events__security_result.filter_rule_name
+  - name: Severity
+    title: Severity
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: inline
+      options:
+      - Informational
+      - Low
+      - Medium
+      - High
+      - Critical
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events__security_result.filter_severity_for_appomni
