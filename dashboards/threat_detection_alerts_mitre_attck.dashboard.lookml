@@ -3,19 +3,21 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: Xa8YVsU7HRxNulnkDv7IOX
+  preferred_slug: Z3dygQr9SCh4uT9F13hCEU
   elements:
   - title: Service Type
     name: Service Type
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [count_of_metadata_product_log_id_2, events.principal__resource__resource_subtype]
+    fields: [count, events.principal__resource__resource_subtype]
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
-    sorts: [count_of_metadata_product_log_id_2 desc 0]
-    limit: 500
+      events__security_result__attack_details__tactics.name: "-EMPTY"
+      events.principal__resource__resource_subtype: "-EMPTY"
+    sorts: [count desc 0]
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -25,12 +27,13 @@
       type: count_distinct
       _kind_hint: measure
       _type_hint: number
-    - measure: count_of_metadata_product_log_id_2
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: lab
@@ -82,6 +85,9 @@
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
+      Severity: events__security_result.filter_severity_for_appomni
+      Service Type: events.principal__resource__filter_resource_subtype
+      Tactic Name: events__security_result__attack_details__tactics.filter_name
     row: 6
     col: 0
     width: 24
@@ -90,16 +96,18 @@
     name: MITRE ATT&CK Tactic Alerts Over Time
     model: appomni_dashboards
     explore: events
-    type: looker_area
+    type: looker_column
     fields: [events.event_timestamp_date_time, events__security_result__attack_details__tactics.name,
       count_of_metadata_product_log_id]
     pivots: [events__security_result__attack_details__tactics.name]
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
+      events__security_result__attack_details__tactics.name: "-EMPTY"
+      events.principal__resource__resource_subtype: "-EMPTY"
     sorts: [events__security_result__attack_details__tactics.name, events.event_timestamp_date_time
         desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -131,11 +139,13 @@
     label_density: 25
     x_axis_scale: auto
     y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    show_null_points: true
+    interpolation: linear
     color_application:
       collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
       palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
@@ -151,12 +161,13 @@
     x_axis_zoom: true
     y_axis_zoom: true
     series_colors: {}
-    ordering: none
-    show_null_labels: false
     defaults_version: 1
     hidden_pivots: {}
     listen:
       Time: events.event_timestamp_date_time
+      Severity: events__security_result.filter_severity_for_appomni
+      Service Type: events.principal__resource__filter_resource_subtype
+      Tactic Name: events__security_result__attack_details__tactics.filter_name
     row: 0
     col: 12
     width: 12
@@ -169,8 +180,10 @@
     fields: [events__security_result__attack_details__tactics.name, events__security_result__attack_details__tactics.id,
       events__security_result__attack_details__techniques.name, events__security_result__attack_details__techniques.id,
       count_of_metadata_product_log_id]
+    filters:
+      events__security_result__attack_details__tactics.name: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -213,6 +226,8 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
+      Severity: events__security_result.filter_severity_for_appomni
+      Tactic Name: events__security_result__attack_details__tactics.filter_name
     row: 12
     col: 0
     width: 24
@@ -222,21 +237,24 @@
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [count_of_metadata_product_log_id, events__security_result.severity_for_appomni]
-    fill_fields: [events__security_result.severity_for_appomni]
+    fields: [count, events__security_result.severity_for_appomni]
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
-    sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+      events__security_result.severity_for_appomni: "-Unknown"
+      events.principal__resource__resource_subtype: "-EMPTY"
+      events__security_result__attack_details__tactics.name: "-EMPTY"
+    sorts: [count desc 0]
+    limit: 5000
     column_limit: 50
     dynamic_fields:
-    - measure: count_of_metadata_product_log_id
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: lab
@@ -245,6 +263,9 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
+      Severity: events__security_result.filter_severity_for_appomni
+      Service Type: events.principal__resource__filter_resource_subtype
+      Tactic Name: events__security_result__attack_details__tactics.filter_name
     row: 0
     col: 0
     width: 12
@@ -259,8 +280,10 @@
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
+      events__security_result__attack_details__tactics.name: "-EMPTY"
+      events.principal__resource__resource_subtype: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
-    limit: 500
+    limit: 5000
     column_limit: 50
     show_view_names: false
     show_row_numbers: true
@@ -290,6 +313,9 @@
     defaults_version: 1
     listen:
       Time: events.event_timestamp_date_time
+      Severity: events__security_result.filter_severity_for_appomni
+      Service Type: events.principal__resource__filter_resource_subtype
+      Tactic Name: events__security_result__attack_details__tactics.filter_name
     row: 18
     col: 0
     width: 24
@@ -309,3 +335,48 @@
     explore: events
     listens_to_filters: []
     field: events.event_timestamp_date_time
+  - name: Severity
+    title: Severity
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: inline
+      options:
+      - Informational
+      - Low
+      - Medium
+      - High
+      - Critical
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events__security_result.filter_severity_for_appomni
+  - name: Service Type
+    title: Service Type
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: inline
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events.principal__resource__filter_resource_subtype
+  - name: Tactic Name
+    title: Tactic Name
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: false
+    required: false
+    ui_config:
+      type: dropdown_menu
+      display: popover
+    model: appomni_dashboards
+    explore: events
+    listens_to_filters: []
+    field: events__security_result__attack_details__tactics.filter_name
