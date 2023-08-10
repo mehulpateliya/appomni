@@ -20,7 +20,6 @@
     sorts: [events.event_timestamp_date_time desc]
     limit: 5000
     column_limit: 50
-    total: true
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -36,7 +35,7 @@
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
-    table_theme: white
+    table_theme: editable
     limit_displayed_rows: false
     enable_conditional_formatting: false
     header_text_alignment: left
@@ -190,10 +189,11 @@
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
-    sorts: [events.metadata__product_event_type]
-    limit: 500
-    column_limit: 50
-    total: true
+      events.metadata__product_event_type: "-EMPTY"
+    sorts: [events.metadata__product_event_type, events.event_timestamp_date_time
+        desc]
+    limit: 5000
+    column_limit: 500
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
       based_on: events.metadata__product_log_id
@@ -335,8 +335,9 @@
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
       events.metadata__product_event_type: "-EMPTY"
+      events.principal__user__userid: "-EMPTY"
     sorts: [count_of_metadata_product_log_id desc 0]
-    limit: 500
+    limit: 5000
     column_limit: 50
     dynamic_fields:
     - measure: count_of_metadata_product_log_id
@@ -508,7 +509,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
@@ -521,7 +522,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
