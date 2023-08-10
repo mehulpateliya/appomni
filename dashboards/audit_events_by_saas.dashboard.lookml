@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: u5iU72i9vIp8CrjGtiGPPG
+  preferred_slug: 1uYaNcB9J2oLhvMs93YpsU
   elements:
   - title: Event Details
     name: Event Details
@@ -11,7 +11,7 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events.principal__user__userid, events.metadata__product_event_type,
-      events__about__labels__related__user.value]
+      events.metadata__product_log_id, events__about__labels__event__type.value]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
@@ -44,6 +44,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     show_sql_query_menu_options: false
+    column_order: ["$$$_row_numbers_$$$", events.event_timestamp_date_time, events.principal__user__userid,
+      events__about__labels__event__type.value, events.metadata__product_event_type]
     show_totals: true
     show_row_totals: true
     truncate_header: false
@@ -51,8 +53,8 @@
     series_labels:
       events.event_timestamp_date_time: _time
       events.principal__user__userid: User Name
-      events.metadata__product_event_type: Event Type
-      events__about__labels__related__user.value: Event Action
+      events.metadata__product_event_type: Event Action
+      events__about__labels__event__type.value: Event Type
     value_labels: labels
     label_type: labPer
     x_axis_gridlines: false
@@ -169,6 +171,7 @@
     totals_color: "#808080"
     defaults_version: 1
     hidden_pivots: {}
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       ServiceType: events.principal__resource__resource_subtype
       Workday Events: events.event_timestamp_date_time
@@ -330,22 +333,23 @@
     model: appomni_dashboards
     explore: events
     type: looker_pie
-    fields: [count_of_metadata_product_log_id, events.principal__user__userid]
+    fields: [count, events.principal__user__userid]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
       events.metadata__product_event_type: "-EMPTY"
       events.principal__user__userid: "-EMPTY"
-    sorts: [count_of_metadata_product_log_id desc 0]
+    sorts: [count desc 0]
     limit: 5000
     column_limit: 50
     dynamic_fields:
-    - measure: count_of_metadata_product_log_id
-      based_on: events.metadata__product_log_id
+    - category: measure
       expression: ''
-      label: Count of Metadata Product Log ID
-      type: count_distinct
+      label: Count
+      based_on: events.metadata__product_log_id
       _kind_hint: measure
+      measure: count
+      type: count_distinct
       _type_hint: number
     value_labels: labels
     label_type: labPer

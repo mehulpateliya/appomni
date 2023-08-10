@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: rEfamjo566Tjhd1YgJnOPs
+  preferred_slug: K4VYtehiNcXmcpyxGG29Y2
   elements:
   - title: Total Events
     name: Total Events

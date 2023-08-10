@@ -171,40 +171,35 @@ explore: events {
 
     join: events__about__labels__related__user {
       view_label: "Events: About Labels Related User"
-      sql_where: ${events__about__labels__related__user.key} LIKE 'related\\_user%' ;;
-      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__user ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__user ON ${events__about__labels__related__user.key} LIKE 'related\\_user%' ;;
       fields: [events__about__labels__related__user.value,events__about__labels__related__user.filter_value]
       relationship: one_to_many
     }
 
     join: events__about__labels__related__ip {
       view_label: "Events: About Labels Related IP"
-      sql_where: ${events__about__labels__related__ip.key} LIKE 'related\\_ip%' ;;
-      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__ip ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__ip ON ${events__about__labels__related__ip.key} LIKE 'related\\_ip%' ;;
       fields: [events__about__labels__related__ip.value]
       relationship: one_to_many
     }
 
     join: events__about__labels__related__event {
       view_label: "Events: About Labels Related Event"
-      sql_where: ${events__about__labels__related__event.key} LIKE 'related\\_event%' ;;
-      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__event ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__event ON ${events__about__labels__related__event.key} LIKE 'related\\_event%';;
       fields: [events__about__labels__related__event.value]
       relationship: one_to_many
     }
 
     join: events__about__labels__event__type {
       view_label: "Events: About Labels Event Type"
-      sql_where: ${events__about__labels__event__type.key} = "event_type" ;;
-      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__event__type ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__event__type ON ${events__about__labels__event__type.key} = "event_type" ;;
       fields: [events__about__labels__event__type.value]
       relationship: one_to_many
     }
 
     join: events__about__labels__service__type {
       view_label: "Events: About Labels Service Type"
-      sql_where: ${events__about__labels__service__type.key} = "service_type" ;;
-      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__service__type ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__service__type ON ${events__about__labels__service__type.key} = "service_type" ;;
       fields: [events__about__labels__service__type.value]
       relationship: one_to_many
     }
