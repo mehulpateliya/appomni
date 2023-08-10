@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: qDblV0ILvwEi9IoT2nx7L3
+  preferred_slug: 5qN0RmDF0Ev7hAnuABknL2
   elements:
   - title: Alerts
     name: Alerts
@@ -387,12 +387,13 @@
     hidden_pivots: {}
     map: usa
     map_projection: ''
+    title_hidden: true
     listen:
       Time: events.event_timestamp_date_time
       Rule Name (From Alert): events__security_result.filter_rule_name
       ServiceType: events.principal__resource__resource_subtype
       Severity: events__security_result.filter_severity_for_appomni
-    row: 23
+    row: 22
     col: 7
     width: 17
     height: 9
@@ -457,12 +458,13 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
+    title_hidden: true
     listen:
       Time: events.event_timestamp_date_time
       Rule Name (From Alert): events__security_result.filter_rule_name
       ServiceType: events.principal__resource__resource_subtype
       Severity: events__security_result.filter_severity_for_appomni
-    row: 23
+    row: 22
     col: 0
     width: 7
     height: 9
