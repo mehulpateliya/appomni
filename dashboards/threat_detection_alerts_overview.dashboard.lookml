@@ -88,6 +88,7 @@
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
       events__security_result.severity_details: "-EMPTY"
+      events.principal__resource__resource_subtype: "-EMPTY"
     sorts: [count desc 0]
     limit: 5000
     column_limit: 50
@@ -143,6 +144,7 @@
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
       events__security_result.severity_details: "-EMPTY"
+      events__security_result.rule_name: "-EMPTY"
     sorts: [events__security_result.rule_name, count_of_metadata_product_log_id desc
         0]
     limit: 5000
@@ -206,6 +208,7 @@
     conditional_formatting_include_nulls: false
     defaults_version: 1
     hidden_pivots: {}
+    hidden_series: []
     listen:
       Time: events.event_timestamp_date_time
       Alert Severity: events__security_result.filter_severity_for_appomni
