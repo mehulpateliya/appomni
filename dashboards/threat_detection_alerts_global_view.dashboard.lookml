@@ -230,6 +230,7 @@
     type: looker_grid
     fields: [events__about__labels__related__ip.value, events__security_result.rule_name]
     filters:
+      events.principal__resource__resource_subtype: "-appomni,-NULL"
       events__about__labels__related__ip.value: "-NULL"
       events__security_result.rule_name: "-NULL"
     sorts: [events__about__labels__related__ip.value]
