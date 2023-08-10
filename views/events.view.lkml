@@ -47822,6 +47822,29 @@ view: events__about__labels__related__user {
     sql: ${value} ;;
   }
 }
+view: events__about__labels__related__ip {
+
+  dimension: key {
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+  dimension: rbac_enabled {
+    type: yesno
+    sql: ${TABLE}.rbac_enabled ;;
+  }
+  dimension: source {
+    type: string
+    sql: ${TABLE}.source ;;
+  }
+  dimension: value {
+    type: string
+    sql: ${TABLE}.value ;;
+  }
+  dimension: filter_value {
+    type: string
+    sql: ${value} ;;
+  }
+}
 
 
 view: events__about__labels__related__event {

@@ -177,6 +177,14 @@ explore: events {
       relationship: one_to_many
     }
 
+    join: events__about__labels__related__ip {
+      view_label: "Events: About Labels Related IP"
+      sql_where: ${events__about__labels__related__ip.key} LIKE 'related\\_ip%' ;;
+      sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__related__ip ;;
+      fields: [events__about__labels__related__ip.value]
+      relationship: one_to_many
+    }
+
     join: events__about__labels__related__event {
       view_label: "Events: About Labels Related Event"
       sql_where: ${events__about__labels__related__event.key} LIKE 'related\\_event%' ;;
