@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: xlzCTDmipelfC8QD0oVVZh
+  preferred_slug: 8AXKIqYBlqsp3NKQ4D7jim
   elements:
   - title: Alert Severity
     name: Alert Severity
@@ -223,7 +223,8 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events__about__labels__related__user.value,
-      events__security_result.rule_name, events__about__labels__related__event.value]
+      events__security_result.rule_name, events__about__labels__related__event.value,
+      events.metadata__product_log_id]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
@@ -286,6 +287,7 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Time: events.event_timestamp_date_time
       Alert Severity: events__security_result.filter_severity_for_appomni
@@ -302,7 +304,7 @@
     type: looker_grid
     fields: [events.event_timestamp_date_time, events.metadata__product_event_type,
       events.principal__user__userid, events__security_result.action_details, events__principal__ip.events__principal__ip,
-      events__about__labels__service__type.value]
+      events__about__labels__service__type.value, events.metadata__product_log_id]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
@@ -338,6 +340,7 @@
       events__about__labels__service__type.value: service.type
     truncate_column_names: false
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Event Id: events.metadata__product_log_id
     row: 12
