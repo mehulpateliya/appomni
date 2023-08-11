@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: TtLFs5dFYyI0sLFyfeJoOE
+  preferred_slug: yCNivth1jSwrLYyP6MFAHp
   elements:
   - title: Alerts by Service Type
     name: Alerts by Service Type
@@ -228,7 +228,8 @@
     model: appomni_dashboards
     explore: events
     type: looker_grid
-    fields: [events__about__labels__related__ip.value, events__security_result.rule_name]
+    fields: [events__about__labels__related__ip.value, events__security_result.rule_name,
+      events.metadata__product_log_id]
     filters:
       events.principal__resource__resource_subtype: "-appomni,-NULL"
       events__about__labels__related__ip.value: "-NULL"
@@ -285,6 +286,7 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Time: events.event_timestamp_date_time
       Service Type: events.principal__resource__filter_resource_subtype

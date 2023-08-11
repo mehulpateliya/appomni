@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: 5qN0RmDF0Ev7hAnuABknL2
+  preferred_slug: b1cQpEd7nHq4T1bV5PXNgQ
   elements:
   - title: Alerts
     name: Alerts
@@ -79,7 +79,8 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events__about__labels__related__user.value,
-      events__security_result.rule_name, events__about__labels__related__event.value]
+      events__security_result.rule_name, events__about__labels__related__event.value,
+      events.metadata__product_log_id]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: alert
@@ -115,6 +116,7 @@
       events__security_result.rule_name: Alert Rule
       events.event_timestamp_date_time: _time
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Time: events.event_timestamp_date_time
       ServiceType: events.principal__resource__resource_subtype
@@ -131,7 +133,7 @@
     type: looker_grid
     fields: [events.event_timestamp_date_time, events.metadata__product_event_type,
       events.principal__user__userid, events__security_result.action_details, events__principal__ip.events__principal__ip,
-      events.principal__resource__name, events.metadata__description]
+      events.principal__resource__name, events.metadata__description, events.metadata__product_log_id]
     filters:
       events__about__labels.key: '"event_kind"'
       events__about__labels.value: event
@@ -196,6 +198,7 @@
     column_order: ["$$$_row_numbers_$$$", events.event_timestamp_date_time, events.metadata__product_event_type,
       events.principal__user__userid, events__security_result.action_details, events__principal__ip.events__principal__ip,
       events.principal__resource__name, events.metadata__description]
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Time: events.event_timestamp_date_time
       ServiceType: events.principal__resource__resource_subtype
@@ -402,7 +405,8 @@
     model: appomni_dashboards
     explore: events
     type: looker_grid
-    fields: [events__about__labels__related__ip.value, events__security_result.rule_name]
+    fields: [events__about__labels__related__ip.value, events__security_result.rule_name,
+      events.metadata__product_log_id]
     filters:
       events__about__labels__related__ip.value: "-NULL"
       events__security_result.rule_name: "-NULL"
@@ -458,6 +462,7 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     title_hidden: true
     listen:
       Time: events.event_timestamp_date_time

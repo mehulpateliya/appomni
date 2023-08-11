@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: Z3dygQr9SCh4uT9F13hCEU
+  preferred_slug: vGqe2aV0E5kqTdaexe6Maq
   elements:
   - title: Service Type
     name: Service Type
@@ -276,7 +276,7 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events__about__labels__related__user.value,
-      events.metadata__description]
+      events.metadata__description, events.metadata__product_log_id]
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
@@ -311,6 +311,7 @@
       events.metadata__description: message
     hidden_pivots: {}
     defaults_version: 1
+    hidden_fields: [events.metadata__product_log_id]
     listen:
       Time: events.event_timestamp_date_time
       Severity: events__security_result.filter_severity_for_appomni
@@ -375,7 +376,7 @@
     required: false
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: appomni_dashboards
     explore: events
     listens_to_filters: []
