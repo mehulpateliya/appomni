@@ -73,8 +73,8 @@
     col: 0
     width: 24
     height: 5
-  - title: Alerts
-    name: Alerts (2)
+  - title: Alerts (filter related events details by using relatedevents{})
+    name: Alerts (filter related events details by using relatedevents{})
     model: appomni_dashboards
     explore: events
     type: looker_grid
