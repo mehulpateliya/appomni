@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: vGqe2aV0E5kqTdaexe6Maq
+  preferred_slug: 5tOAwuGaRywkMrUrh5awvY
   elements:
   - title: Service Type
     name: Service Type
@@ -36,7 +36,7 @@
       type: count_distinct
       _type_hint: number
     value_labels: labels
-    label_type: lab
+    label_type: labPer
     color_application:
       collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
       palette_id: 5d189dfc-4f46-46f3-822b-bfb0b61777b1
@@ -257,7 +257,7 @@
       type: count_distinct
       _type_hint: number
     value_labels: labels
-    label_type: lab
+    label_type: labPer
     series_colors:
       INFORMATIONAL: "#3bb211"
     defaults_version: 1
@@ -276,12 +276,13 @@
     explore: events
     type: looker_grid
     fields: [events.event_timestamp_date_time, events__about__labels__related__user.value,
-      events.metadata__description, events.metadata__product_log_id]
+      events.metadata__description]
     filters:
       events__security_result__rule_labels.key: '"rule_threat_framework"'
       events__security_result__rule_labels.value: MITRE ATT&CK
       events__security_result__attack_details__tactics.name: "-EMPTY"
       events.principal__resource__resource_subtype: "-EMPTY"
+      events__about__labels__related__user.value: "-EMPTY"
     sorts: [events.event_timestamp_date_time desc]
     limit: 5000
     column_limit: 50
@@ -311,7 +312,7 @@
       events.metadata__description: message
     hidden_pivots: {}
     defaults_version: 1
-    hidden_fields: [events.metadata__product_log_id]
+    hidden_fields: []
     listen:
       Time: events.event_timestamp_date_time
       Severity: events__security_result.filter_severity_for_appomni
