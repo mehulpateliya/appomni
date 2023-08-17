@@ -3680,7 +3680,7 @@ explore: events {
     }
     join: events__security_result__attack_details__tactics {
       view_label: "Events: Security Result Attack Details Tactics"
-      sql: LEFT JOIN UNNEST(${events__security_result.attack_details__tactics}) as events__security_result__attack_details__tactics ;;
+      sql: LEFT JOIN UNNEST(${events__security_result.attack_details__tactics}) as events__security_result__attack_details__tactics WITH OFFSET AS attack_details__tactics__index;;
       relationship: one_to_many
     }
     join: events__target__ip_geo_artifact__network__email__to {
@@ -4395,7 +4395,7 @@ explore: events {
     }
     join: events__security_result__attack_details__techniques {
       view_label: "Events: Security Result Attack Details Techniques"
-      sql: LEFT JOIN UNNEST(${events__security_result.attack_details__techniques}) as events__security_result__attack_details__techniques ;;
+      sql: LEFT JOIN UNNEST(${events__security_result.attack_details__techniques}) as events__security_result__attack_details__techniques WITH OFFSET AS  attack_details__techniques__index ON attack_details__tactics__index = attack_details__techniques__index ;;
       relationship: one_to_many
     }
     join: events__target__ip_geo_artifact__network__email__subject {
@@ -4545,7 +4545,7 @@ explore: events {
     }
     join: events__src__security_result__attack_details__tactics {
       view_label: "Events: Src Security Result Attack Details Tactics"
-      sql: LEFT JOIN UNNEST(${events__src__security_result.attack_details__tactics}) as events__src__security_result__attack_details__tactics ;;
+      sql: LEFT JOIN UNNEST(${events__src__security_result.attack_details__tactics}) as events__src__security_result__attack_details__tactics;;
       relationship: one_to_many
     }
     join: events__src__domain__billing__attribute__permissions {
@@ -5200,7 +5200,7 @@ explore: events {
     }
     join: events__src__security_result__attack_details__techniques {
       view_label: "Events: Src Security Result Attack Details Techniques"
-      sql: LEFT JOIN UNNEST(${events__src__security_result.attack_details__techniques}) as events__src__security_result__attack_details__techniques ;;
+      sql: LEFT JOIN UNNEST(${events__src__security_result.attack_details__techniques}) as events__src__security_result__attack_details__techniques;;
       relationship: one_to_many
     }
     join: events__src__domain__registrant__attribute__permissions {
