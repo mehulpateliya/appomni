@@ -1,4 +1,4 @@
-# Appomni
+# AppOmni
 
 ## Block Structure
 For more information on the Block structure and customization, refer to [Looker Marketplace Documnetation](https://docs.looker.com/data-modeling/marketplace/customize-blocks#marketplace_blocks_that_use_refinements)
@@ -15,4 +15,4 @@ For more information on the Block structure and customization, refer to [Looker 
 1. Install this block from the marketplace
 2. Required installation parameters:
   - CONNECTION_NAME: name of the database connection for the Chronicle dataset in BigQuery
-3. Access the block from Browse - Applications & Tools - Appomni Block or the LookML dashboards folder (/folders/lookml). You can customize these dashboards by copying them into one of your instances folders.
+3. Access the block from Browse - Applications & Tools - AppOmni Block or the LookML dashboards folder (/folders/lookml). You can customize these dashboards by copying them into one of your instances folders.

@@ -1,9 +1,9 @@
 {
-  "label": "AppOmni Dashboards",
+  "label": "AppOmni",
   "category_label": "Models",
   "branding": {
     "image_uri": "https://marketplace-api.looker.com/block-icons/chronicle.png",
-    "tagline": "Explore, analyze, and visualize Appomni data in Looker."
+    "tagline": "Explore, analyze, and visualize appomni data from chronicle in Looker."
   },
   "constants": {
     "CONNECTION_NAME": {

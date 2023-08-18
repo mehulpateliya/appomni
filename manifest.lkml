@@ -1,4 +1,4 @@
-project_name: "appomni_dashboards"
+project_name: "appomni_block"
 
 constant: CONNECTION_NAME{
   value: "chronicle"

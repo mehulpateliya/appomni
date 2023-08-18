@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: 1uYaNcB9J2oLhvMs93YpsU
+  preferred_slug: cBERJK3btuJxwtBd11ptIA
   elements:
   - title: Event Details
     name: Event Details
@@ -174,9 +174,9 @@
     hidden_fields: [events.metadata__product_log_id]
     listen:
       ServiceType: events.principal__resource__resource_subtype
-      Workday Events: events.event_timestamp_date_time
       Event Action: events.metadata__product_filter_event_type
       User Name: events.principal__user__filter_userid
+      Time: events.event_timestamp_date_time
     row: 6
     col: 0
     width: 24
@@ -323,7 +323,7 @@
     hidden_pivots: {}
     listen:
       ServiceType: events.principal__resource__resource_subtype
-      Workday Events: events.event_timestamp_date_time
+      Time: events.event_timestamp_date_time
     row: 0
     col: 0
     width: 12
@@ -471,15 +471,15 @@
     hidden_pivots: {}
     listen:
       ServiceType: events.principal__resource__resource_subtype
-      Workday Events: events.event_timestamp_date_time
       Event Action: events.metadata__product_filter_event_type
+      Time: events.event_timestamp_date_time
     row: 0
     col: 12
     width: 12
     height: 6
   filters:
-  - name: Workday Events
-    title: Workday Events
+  - name: Time
+    title: Time
     type: field_filter
     default_value: 7 day
     allow_multiple_values: false
