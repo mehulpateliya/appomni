@@ -2,7 +2,7 @@
   "label": "AppOmni",
   "category_label": "Models",
   "branding": {
-    "image_uri": "https://marketplace-api.looker.com/block-icons/chronicle.png",
+    "image_uri": "https://storage.googleapis.com/appomni-public/AppOmni_Lockup_600.png",
     "tagline": "Explore, analyze, and visualize appomni data from chronicle in Looker."
   },
   "constants": {
